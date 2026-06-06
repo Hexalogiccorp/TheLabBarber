@@ -1,0 +1,435 @@
+  <!--
+    Page content slot — renders behind the splash (normal document flow).
+    The fixed splash wrapper (z-index:10) covers it during the animation.
+    The Navbar (z-index:50) is hidden via JS until the animation finishes.
+  -->
+  <div id="page-content">
+    <slot />
+  </div>
+
+  <!--
+    SVG clipPath definition (0×0, invisible).
+    Initially just a large screen rect → clip = full wrapper visible (solid splash).
+    JS appends the hair-clipper subpath; with clip-rule="evenodd" the overlapping area
+    becomes a transparent cut-out, revealing the real page content below.
+  -->
+  <svg
+    id="splash-clip-svg"
+    style="position:fixed;width:0;height:0;overflow:hidden;pointer-events:none;"
+    aria-hidden="true"
+  >
+    <defs>
+      <clipPath id="splashClip" clipPathUnits="userSpaceOnUse">
+        <path
+          id="splash-clip-path"
+          clip-rule="evenodd"
+          d="M 0 0 H 10000 V 10000 H 0 Z"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Splash wrapper — clipped by splashClip.
+       As the clipper subpath grows, the even-odd rule cuts a transparent hole
+       in the wrapper, revealing the real page content below. -->
+  <div id="splash-wrapper">
+
+    <div class="splash">
+
+      <!-- ── Background ─────────────────────────────── -->
+      <div class="splash__bg">
+        <img src="/barber-main.jpg" alt="" class="splash__bg-img" />
+        <div class="splash__bg-overlay"></div>
+      </div>
+
+      <!-- ── Main content ───────────────────────────── -->
+      <div class="splash__content">
+
+        <!-- Logo -->
+        <div class="splash__logo-wrap">
+          <img
+            src="/the-lab-barber.png"
+            alt="TLB 506 – The Lab Barber"
+            class="splash__logo"
+          />
+        </div>
+
+        <!-- Loader section -->
+        <div class="splash__loader">
+
+          <!-- Erlenmeyer flask SVG -->
+          <div class="splash__icon">
+            <svg
+              viewBox="0 0 56 78"
+              style="overflow: visible;"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="tools-svg"
+              aria-hidden="true"
+            >
+              <!-- Flask glass (Erlenmeyer shape) -->
+              <path
+                d="M21,12 L21,28 C21,35 5,40 4,46 L4,66 Q4,74 28,74 Q52,74 52,66 L52,46 C51,40 35,35 35,28 L35,12 Z"
+                fill="rgba(186,224,28,0.08)"
+                stroke="#BAE01C"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+              />
+              <!-- Liquid fill -->
+              <path
+                d="M8,56 Q28,52 48,56 L48,66 Q48,71 28,71 Q8,71 8,66 Z"
+                fill="rgba(186,224,28,0.5)"
+              />
+              <!-- Neck opening rim -->
+              <line x1="19" y1="11" x2="37" y2="11"
+                stroke="#BAE01C" stroke-width="2.8" stroke-linecap="round"/>
+
+              <!-- Bubbles inside liquid -->
+              <circle cx="17" cy="68" r="2.2" fill="rgba(255,255,255,0.28)" opacity="0">
+                <animate attributeName="cy" values="68;54" dur="1.7s" repeatCount="indefinite" begin="0.4s"/>
+                <animate attributeName="opacity" values="0;0.55;0" keyTimes="0;0.1;1" dur="1.7s" repeatCount="indefinite" begin="0.4s"/>
+              </circle>
+              <circle cx="38" cy="68" r="1.5" fill="rgba(255,255,255,0.22)" opacity="0">
+                <animate attributeName="cy" values="70;58" dur="2.0s" repeatCount="indefinite" begin="1.1s"/>
+                <animate attributeName="opacity" values="0;0.45;0" keyTimes="0;0.1;1" dur="2.0s" repeatCount="indefinite" begin="1.1s"/>
+              </circle>
+              <circle cx="27" cy="65" r="1.8" fill="rgba(255,255,255,0.2)" opacity="0">
+                <animate attributeName="cy" values="68;55" dur="1.5s" repeatCount="indefinite" begin="1.7s"/>
+                <animate attributeName="opacity" values="0;0.4;0" keyTimes="0;0.1;1" dur="1.5s" repeatCount="indefinite" begin="1.7s"/>
+              </circle>
+
+              <!-- Bubbles exiting neck -->
+              <circle cx="28" cy="10" r="2.5" fill="#BAE01C" opacity="0">
+                <animate attributeName="cy" values="10;-28" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+                <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.1;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+                <animate attributeName="r" values="2.5;5.5" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+              </circle>
+              <circle cx="24" cy="10" r="2" fill="#BAE01C" opacity="0">
+                <animate attributeName="cy" values="10;-20" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
+                <animate attributeName="cx" values="24;18" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
+                <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.12;1" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
+                <animate attributeName="r" values="2;4" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
+              </circle>
+              <circle cx="32" cy="10" r="1.6" fill="#BAE01C" opacity="0">
+                <animate attributeName="cy" values="10;-22" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
+                <animate attributeName="cx" values="32;38" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
+                <animate attributeName="opacity" values="0;0.8;0" keyTimes="0;0.12;1" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
+                <animate attributeName="r" values="1.6;3.5" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
+              </circle>
+              <circle cx="26" cy="10" r="1.2" fill="#BAE01C" opacity="0">
+                <animate attributeName="cy" values="10;-14" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
+                <animate attributeName="cx" values="26;22" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
+                <animate attributeName="opacity" values="0;0.7;0" keyTimes="0;0.15;1" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
+              </circle>
+            </svg>
+          </div>
+
+          <!-- Label -->
+          <p class="splash__label">CARGANDO...</p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Lime-green transition overlay (inside wrapper → also gets clipped) -->
+    <div id="transition-bg" aria-hidden="true"></div>
+
+  </div>
+
+  <!-- Visible border tracing the clipper silhouette during the reveal animation.
+       Lives OUTSIDE #splash-wrapper so it is NOT clipped — stays visible as the
+       hole grows. Removed by JS when the animation finishes. -->
+  <svg
+    id="clipper-border-svg"
+    style="position:fixed;inset:0;width:100%;height:100%;z-index:11;pointer-events:none;overflow:visible;"
+    aria-hidden="true"
+  >
+    <defs>
+      <filter id="clipper-glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <path
+      id="clipper-border-path"
+      fill="none"
+      stroke="#BAE01C"
+      stroke-width="2.5"
+      stroke-linejoin="round"
+      opacity="0"
+      filter="url(#clipper-glow)"
+    />
+  </svg>
+
+  <style is:global>
+  @keyframes nav-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  </style>
+
+  <style>
+  /* ─── Splash wrapper ────────────────────────────── */
+  #splash-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: #0D0D0D;
+    /* clip-path is NOT set here — applied by JS only when the reveal animation starts,
+       avoiding the SVG-reference race condition that causes the initial content flash. */
+  }
+
+  /* ─── Container ───────────────────────────────────── */
+  .splash {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    animation: page-in 0.6s ease-out both;
+  }
+
+  @keyframes page-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ─── Background ──────────────────────────────────── */
+  .splash__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .splash__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: brightness(0.35) saturate(0.8);
+    transform: scale(1.04);
+    animation: bg-drift 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes bg-drift {
+    from { transform: scale(1.04) translateY(0); }
+    to   { transform: scale(1.04) translateY(-2%); }
+  }
+
+  .splash__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 45% at 50% 30%, rgba(186,224,28,0.04) 0%, transparent 60%),
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.20)  0%,
+        rgba(0,0,0,0.10) 20%,
+        rgba(0,0,0,0.50) 45%,
+        rgba(0,0,0,0.88) 58%,
+        rgba(0,0,0,0.97) 70%,
+        rgba(0,0,0,1.00) 100%
+      );
+  }
+
+  /* ─── Layout ──────────────────────────────────────── */
+  .splash__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding:
+      max(env(safe-area-inset-top, 0px) + 6vh, 40px)
+      clamp(24px, 6vw, 80px)
+      max(env(safe-area-inset-bottom, 0px) + 7vh, 44px);
+  }
+
+  /* ─── Logo ────────────────────────────────────────── */
+  .splash__logo-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: logo-in 0.9s cubic-bezier(0.34, 1.5, 0.64, 1) 0.25s both;
+  }
+
+  .splash__logo {
+    width: clamp(100px, 72vw, 400px);
+    max-height: 62vh;
+    object-fit: contain;
+    filter:
+      drop-shadow(0 0 28px rgba(186,224,28, 0.35))
+      drop-shadow(0 0 72px rgba(186,224,28, 0.14));
+    animation: logo-glow 3.5s ease-in-out 1.2s infinite alternate;
+  }
+
+  @keyframes logo-in {
+    from { opacity: 0; transform: scale(0.8) translateY(24px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes logo-glow {
+    from {
+      filter:
+        drop-shadow(0 0 28px rgba(186,224,28, 0.35))
+        drop-shadow(0 0 72px rgba(186,224,28, 0.14));
+    }
+    to {
+      filter:
+        drop-shadow(0 0 38px rgba(186,224,28, 0.55))
+        drop-shadow(0 0 90px rgba(186,224,28, 0.25));
+    }
+  }
+
+  /* ─── Loader section ──────────────────────────────── */
+  .splash__loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2.5vh, 20px);
+    width: 100%;
+    animation: loader-in 0.7s ease-out 0.65s both;
+  }
+
+  @keyframes loader-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Icon ────────────────────────────────────────── */
+  .splash__icon {
+    animation: icon-float 2.2s ease-in-out infinite;
+    padding: clamp(14px, 3.5vw, 22px);
+  }
+
+  @keyframes icon-float {
+    0%, 100% { transform: translateY(0px);  }
+    50%       { transform: translateY(-6px); }
+  }
+
+  .tools-svg {
+    width: clamp(58px, 14vw, 80px);
+    height: auto;
+  }
+
+  /* ─── Label ───────────────────────────────────────── */
+  .splash__label {
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    font-size: clamp(10px, 2.4vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-indent: 0.4em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    animation: label-pulse 2.4s ease-in-out 1.2s infinite;
+  }
+
+  @keyframes label-pulse {
+    0%, 100% { opacity: 0.5;  }
+    50%       { opacity: 0.85; }
+  }
+
+  /* ─── Lime-green transition background ───────────── */
+  #transition-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+    background: rgba(0, 0, 0, 0.495);
+    opacity: 0;
+    pointer-events: none;
+  }
+  </style>
+
+  <script>
+  // ── Lock scroll during splash (Navbar is already hidden via CSS in <head>) ──
+  const mainNav = document.getElementById('main-nav') as HTMLElement | null;
+  document.body.style.overflow = 'hidden';
+
+  // ── Splash + clipper reveal ────────────────────────────────────────────
+  window.addEventListener('load', () => {
+    const SPLASH_WAIT_MS = 4500;
+    const DURATION_MS    = 1300;
+    const MAX_SCALE      = 45;
+
+    function cubicEaseIn(t: number): number { return t * t * t; }
+
+    function buildClipperPath(s: number, cx: number, cy: number): string {
+      const p = (px: number, py: number) =>
+        `${cx + s * (px - 28)},${cy + s * (py - 53)}`;
+      return [
+        `M ${p(12,4)} Q ${p(4,4)} ${p(4,12)}`,
+        `L ${p(4,80)} L ${p(2,80)} L ${p(2,92)}`,
+        `L ${p(6,92)} L ${p(6,102)} L ${p(11,102)} L ${p(11,92)}`,
+        `L ${p(12,92)} L ${p(12,102)} L ${p(17,102)} L ${p(17,92)}`,
+        `L ${p(18,92)} L ${p(18,102)} L ${p(23,102)} L ${p(23,92)}`,
+        `L ${p(24,92)} L ${p(24,102)} L ${p(29,102)} L ${p(29,92)}`,
+        `L ${p(30,92)} L ${p(30,102)} L ${p(35,102)} L ${p(35,92)}`,
+        `L ${p(36,92)} L ${p(36,102)} L ${p(41,102)} L ${p(41,92)}`,
+        `L ${p(42,92)} L ${p(42,102)} L ${p(47,102)} L ${p(47,92)}`,
+        `L ${p(54,92)} L ${p(54,80)} L ${p(52,80)} L ${p(52,12)}`,
+        `Q ${p(52,4)} ${p(44,4)} Z`,
+      ].join(' ');
+    }
+
+    setTimeout(() => {
+      // 1. Snap in the lime-green overlay
+      const bg = document.getElementById('transition-bg');
+      if (bg) bg.style.opacity = '1';
+
+      // 2. Apply clip-path now (wrapper was a solid dark screen during loading)
+      const wrapper = document.getElementById('splash-wrapper');
+      if (wrapper) wrapper.style.clipPath = 'url(#splashClip)';
+
+      // 3. Grow the clipper cut-out
+      const clipPathEl = document.getElementById('splash-clip-path');
+      if (!clipPathEl) return;
+      const clipEl = clipPathEl as Element;
+
+      const cx = window.innerWidth  / 2;
+      const cy = window.innerHeight / 2;
+      let startTime: number | null = null;
+      let navTriggered = false;
+
+      const borderPathEl = document.getElementById('clipper-border-path') as SVGPathElement | null;
+      if (borderPathEl) borderPathEl.setAttribute('opacity', '0.85');
+
+      function tick(now: number): void {
+        if (startTime === null) startTime = now;
+        const t = Math.min((now - startTime) / DURATION_MS, 1);
+        const s = cubicEaseIn(t) * MAX_SCALE;
+
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+        const clipperPath = buildClipperPath(s, cx, cy);
+
+        clipEl.setAttribute('d', `M 0 0 H ${W} V ${H} H 0 Z ${clipperPath}`);
+        borderPathEl?.setAttribute('d', clipperPath);
+
+        // Start navbar fade-in slightly before the clipper finishes (~85% through)
+        if (!navTriggered && t >= 0.85) {
+          navTriggered = true;
+          mainNav?.classList.add('nav-ready');
+        }
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          wrapper?.remove();
+          document.getElementById('splash-clip-svg')?.remove();
+          document.getElementById('clipper-border-svg')?.remove();
+          document.body.style.overflow = '';
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }, SPLASH_WAIT_MS);
+  });
+  </script>
