@@ -1,18 +1,96 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "The Lab Barber 506 | Barbería en Siquirres, Costa Rica",
+  description = "Barbería profesional en Siquirres, Costa Rica. Cortes, barba y afeitado clásico por manos expertas. Reserva tu cita hoy mismo.",
+} = Astro.props;
+
+const siteUrl = "https://thelabbarber506.com"; // TODO: actualizar con la URL real
+const ogImage = `${siteUrl}/logoHero.webp`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "The Lab Barber 506",
+  "description": description,
+  "url": siteUrl,
+  "telephone": "+506XXXXXXXX", // TODO: actualizar con el número real
+  "image": ogImage,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "De Bar Martel 100 metros norte, local a mano derecha",
+    "addressLocality": "Siquirres",
+    "addressRegion": "Limón",
+    "addressCountry": "CR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 10.100774,
+    "longitude": -83.504631
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:30",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"],
+      "opens": "08:30",
+      "closes": "13:30"
+    }
+  ],
+  "sameAs": [
+    "https://www.tiktok.com/@the.lab.barber1"
+  ]
+};
 ---
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/logoHero.webp" />
+		<link rel="icon" href="/logoHero.webp" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+	
+		<link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+		<link rel="preload" href="/HeroBackground.webp" as="image" />
+
+	
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={siteUrl} />
+
+	
+		<meta property="og:type"        content="website" />
+		<meta property="og:title"       content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url"         content={siteUrl} />
+		<meta property="og:image"       content={ogImage} />
+		<meta property="og:locale"      content="es_CR" />
+		<meta property="og:site_name"   content="The Lab Barber 506" />
+
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>
-	<body>
-		<slot />
+	<body class="bg-[#0D0D0D]">
+		<Navbar />
+		<main>
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
 
@@ -22,5 +100,6 @@ import "../styles/global.css";
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		scroll-behavior: smooth;
 	}
 </style>

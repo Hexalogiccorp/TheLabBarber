@@ -1,0 +1,123 @@
+---
+import BarberCard from "../ui/BarberCard.astro";
+
+const barbers = [
+  {
+    photo: "/barber1.jpg",
+    name: "Osvaldo Ortíz",
+    role: "Fundador & Barbero",
+    whatsapp: "https://wa.me/50600000000",
+    reserveHref: "#reservar",
+  },
+   {
+    photo: "/barber1.jpg",
+    name: "Osvaldo Ortíz",
+    role: "Fundador & Barbero",
+    whatsapp: "https://wa.me/50600000000",
+    reserveHref: "#reservar",
+  }, {
+    photo: "/barber1.jpg",
+    name: "Osvaldo Ortíz",
+    role: "Fundador & Barbero",
+    whatsapp: "https://wa.me/50600000000",
+    reserveHref: "#reservar",
+  },
+];
+---
+
+<style>
+  .section-title {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .section-title.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .title-line {
+    margin-top: 10px;
+    height: 2px;
+    width: 48px;
+    background: #BAE01C;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+  }
+  .title-line.is-visible {
+    transform: scaleX(1);
+  }
+
+  .section-subtitle {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.65s ease 0.35s,
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+  }
+  .section-subtitle.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<section id="reservar" aria-labelledby="barber-heading" class="w-full py-16 px-6 sm:px-10 lg:px-16" style="scroll-margin-top:4rem;">
+  <div class="max-w-7xl mx-auto">
+
+    <header class="mb-10">
+      <h2 id="barber-heading" class="section-title text-3xl sm:text-4xl font-bold leading-tight">
+        <span class="text-white">Reserva con nuestros </span><span style="color:#BAE01C;">Barberos</span>
+      </h2>
+      <div class="title-line" aria-hidden="true"></div>
+      <p class="section-subtitle mt-3 text-sm sm:text-base" style="color:rgba(255,255,255,0.60);">
+        Elige tu barbero favorito y agenda en segundos
+      </p>
+    </header>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 list-none p-0 m-0">
+      {barbers.map((barber) => (
+        <li>
+          <BarberCard {...barber} />
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<script>
+  {
+    const section = document.getElementById('reservar');
+    if (section) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      section.querySelectorAll('.section-title, .title-line, .section-subtitle').forEach(el => {
+        observer.observe(el);
+      });
+
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      section.querySelectorAll('.barber-card').forEach((card, i) => {
+        (card as HTMLElement).style.transitionDelay = `${i * 150}ms`;
+        cardObserver.observe(card);
+      });
+    }
+  }
+</script>
