@@ -1,7 +1,5 @@
 ---
 import "../styles/global.css";
-import Navbar from "../components/layout/Navbar.astro";
-import Footer from "../components/layout/Footer.astro";
 
 interface Props {
   title?: string;
@@ -64,17 +62,14 @@ const schema = {
 		<link rel="icon" href="/logoHero.webp" />
 		<meta name="generator" content={Astro.generator} />
 
-	
 		<link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 		<link rel="preload" href="/HeroBackground.webp" as="image" />
 
-	
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={siteUrl} />
 
-	
 		<meta property="og:type"        content="website" />
 		<meta property="og:title"       content={title} />
 		<meta property="og:description" content={description} />
@@ -86,11 +81,9 @@ const schema = {
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>
 	<body class="bg-[#0D0D0D]">
-		<Navbar />
 		<main>
 			<slot />
 		</main>
-		<Footer />
 	</body>
 </html>
 

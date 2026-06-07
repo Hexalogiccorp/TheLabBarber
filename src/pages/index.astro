@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
-import BarberSection from '../components/sections/BarberSection.astro';
-import UbicationSection from '../components/sections/UbicationSection.astro';
+import Login from '../components/login/login.astro';
+import Home from '../pages/home.astro';
 ---
 
-<Layout>
-  <HeroSection />
-  <BarberSection />
-  <UbicationSection />
+<Layout title="The Lab Barber 506 | TLB">
+  <Login >
+    <Home/>
+  </Login>
 </Layout>
+
