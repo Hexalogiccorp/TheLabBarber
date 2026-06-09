@@ -5,6 +5,7 @@ export interface Barber {
   photo: string;
   role: string;
   experience: number;
+  whatsapp: string;
   calUrl?: string;
 }
 
@@ -16,6 +17,7 @@ export const barbers: Barber[] = [
     photo: "/barber1.jpg",
     role: "Fundador & Barbero",
     experience: 4,
+    whatsapp: "https://wa.me/50600000000",
   },
   {
     slug: "barbero-dos",
@@ -24,6 +26,7 @@ export const barbers: Barber[] = [
     photo: "/barber1.jpg",
     role: "Barbero",
     experience: 2,
+    whatsapp: "https://wa.me/50600000000",
   },
   {
     slug: "barbero-tres",
@@ -32,5 +35,6 @@ export const barbers: Barber[] = [
     photo: "/barber1.jpg",
     role: "Barbero",
     experience: 3,
+    whatsapp: "https://wa.me/50600000000",
   },
 ];
