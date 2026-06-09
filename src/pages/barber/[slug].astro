@@ -1,0 +1,90 @@
+---
+import { barbers } from '../../data/barbers';
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return barbers.map(barber => ({
+    params: { slug: barber.slug },
+    props: { barber },
+  }));
+}
+
+const { barber } = Astro.props;
+const { firstName, lastName, photo, role, experience } = barber;
+---
+
+<Layout title={`${firstName} ${lastName} | The Lab Barber 506`}>
+  <div class="min-h-screen max-w-3xl mx-auto flex flex-col gap-10 pt-[clamp(80px,12vw,120px)] px-[clamp(16px,6vw,80px)] pb-[clamp(48px,8vw,80px)]">
+
+
+    <a
+      href="/#reservar"
+      class="anim anim-1 inline-flex items-center gap-2 self-start border border-[#BAE01C] px-4 py-2 text-xs font-bold tracking-widest uppercase text-white transition-all duration-200 hover:bg-[#BAE01C] hover:text-[#0D0D0D] active:bg-[#BAE01C] active:text-[#0D0D0D] active:scale-95"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      VOLVER
+    </a>
+
+   
+    <section class="flex gap-[clamp(20px,5vw,48px)] items-start">
+
+      <div class="anim anim-2 relative shrink-0 w-[clamp(130px,38vw,220px)] aspect-10/11">
+        <img
+          src={photo}
+          alt={`Foto de ${firstName} ${lastName}`}
+          class="w-full h-full object-cover object-top block"
+        />
+        <div aria-hidden="true" class="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#BAE01C] opacity-80 pointer-events-none"></div>
+        <div aria-hidden="true" class="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#BAE01C] opacity-80 pointer-events-none"></div>
+      </div>
+
+    
+      <div class="anim anim-3 flex flex-col gap-2 pt-1">
+        <h1 class="text-[clamp(1.6rem,5vw,2.4rem)] font-extrabold leading-tight text-white m-0">
+          <span class="text-[#BAE01C]">{firstName}</span> {lastName}
+        </h1>
+        <p class="text-xs font-semibold tracking-wider uppercase text-white/40 m-0">{role}</p>
+        <p class="text-[clamp(0.82rem,2.5vw,0.95rem)] text-white/65 leading-relaxed mt-1">
+          Barbero con {experience} año{experience !== 1 ? 's' : ''} de experiencia en <span class="text-[#BAE01C]">TLB 506</span>
+        </p>
+     
+      </div>
+    </section>
+
+  
+    <section class="anim anim-4 flex flex-col gap-6">
+      <h2 class="flex items-center gap-3 flex-wrap text-[clamp(1.3rem,4.5vw,2rem)] font-extrabold text-white leading-tight m-0">
+        Reserva una cita con
+        <span class="text-[#BAE01C]">{firstName}</span>
+        <svg viewBox="0 0 56 78" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-[clamp(22px,4vw,30px)] h-auto">
+          <path d="M21,12 L21,28 C21,35 5,40 4,46 L4,66 Q4,74 28,74 Q52,74 52,66 L52,46 C51,40 35,35 35,28 L35,12 Z" fill="rgba(186,224,28,0.15)" stroke="#BAE01C" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M8,56 Q28,52 48,56 L48,66 Q48,71 28,71 Q8,71 8,66 Z" fill="rgba(186,224,28,0.5)"/>
+          <line x1="19" y1="11" x2="37" y2="11" stroke="#BAE01C" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+      </h2>
+
+      <div class="w-full min-h-[120px] border border-[#325604] flex items-center justify-center">
+    
+        <p class="text-white/25 text-sm tracking-widest uppercase">Próximamente...</p>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .anim {
+    animation: fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .anim-1 { animation-delay: 0.05s; }
+  .anim-2 { animation-delay: 0.18s; }
+  .anim-3 { animation-delay: 0.28s; }
+  .anim-4 { animation-delay: 0.42s; }
+</style>
