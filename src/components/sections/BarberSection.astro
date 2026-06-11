@@ -1,28 +1,14 @@
 ---
 import BarberCard from "../ui/BarberCard.astro";
+import { barbers as barberData } from "../../data/barbers";
 
-const barbers = [
-  {
-    photo: "/barber1.jpg",
-    name: "Osvaldo Ortíz",
-    role: "Fundador & Barbero",
-    whatsapp: "https://wa.me/50600000000",
-    reserveHref: "#reservar",
-  },
-   {
-    photo: "/barber1.jpg",
-    name: "Osvaldo Ortíz",
-    role: "Fundador & Barbero",
-    whatsapp: "https://wa.me/50600000000",
-    reserveHref: "#reservar",
-  }, {
-    photo: "/barber1.jpg",
-    name: "Osvaldo Ortíz",
-    role: "Fundador & Barbero",
-    whatsapp: "https://wa.me/50600000000",
-    reserveHref: "#reservar",
-  },
-];
+const barbers = barberData.map(b => ({
+  photo: b.photo,
+  name: `${b.firstName} ${b.lastName}`,
+  role: b.role,
+  whatsapp: b.whatsapp,
+  reserveHref: `/barber/${b.slug}`,
+}));
 ---
 
 <style>
