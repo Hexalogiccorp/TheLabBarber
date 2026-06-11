@@ -1,4 +1,6 @@
 ---
+import Footer from "../components/layout/Footer.astro";
+import Navbar from "../components/layout/Navbar.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -81,9 +83,11 @@ const schema = {
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>
 	<body class="bg-[#0D0D0D]">
+    <Navbar/>
 		<main>
 			<slot />
 		</main>
+    <Footer/>
 	</body>
 </html>
 
