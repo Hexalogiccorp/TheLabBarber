@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://thelabbarber506.com";
-const ogImage = `${siteUrl}/logoHero.webp`;
+const ogImage = `${siteUrl}/barber.webp`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -60,8 +60,8 @@ const schema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/logoHero.webp" />
-    <link rel="icon" href="/logoHero.webp" />
+    <link rel="icon" type="image/svg+xml" href="/barber.webp" />
+    <link rel="icon" href="/barber.webp" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
@@ -124,83 +124,58 @@ const schema = {
          
           <div class="splash__logo-wrap">
             <img
-              src="/the-lab-barber.png"
-              alt="TLB 506 – The Lab Barber"
+              src="/letteringg.webp"
+              alt="Barber Shop"
               class="splash__logo"
             />
           </div>
 
           <!-- Loader section -->
           <div class="splash__loader">
-
-            <!-- Erlenmeyer flask SVG -->
             <div class="splash__icon">
-              <svg
-                viewBox="0 0 56 78"
-                style="overflow: visible;"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="tools-svg"
-                aria-hidden="true"
-              >
-                <!-- Flask glass (Erlenmeyer shape) -->
-                <path
-                  d="M21,12 L21,28 C21,35 5,40 4,46 L4,66 Q4,74 28,74 Q52,74 52,66 L52,46 C51,40 35,35 35,28 L35,12 Z"
-                  fill="rgba(186,224,28,0.08)"
-                  stroke="#BAE01C"
-                  stroke-width="2.2"
-                  stroke-linejoin="round"
-                />
-                <!-- Liquid fill -->
-                <path
-                  d="M8,56 Q28,52 48,56 L48,66 Q48,71 28,71 Q8,71 8,66 Z"
-                  fill="rgba(186,224,28,0.5)"
-                />
-                <!-- Neck opening rim -->
-                <line x1="19" y1="11" x2="37" y2="11"
-                  stroke="#BAE01C" stroke-width="2.8" stroke-linecap="round"/>
-
-                <!-- Bubbles inside liquid -->
-                <circle cx="17" cy="68" r="2.2" fill="rgba(255,255,255,0.28)" opacity="0">
-                  <animate attributeName="cy" values="68;54" dur="1.7s" repeatCount="indefinite" begin="0.4s"/>
-                  <animate attributeName="opacity" values="0;0.55;0" keyTimes="0;0.1;1" dur="1.7s" repeatCount="indefinite" begin="0.4s"/>
+              <svg class="tools-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Cuerpo de la máquina -->
+                <path d="M33 7 Q29 7 27 11 L23 52 Q23 55 26 55 L54 55 Q57 55 57 52 L53 11 Q51 7 47 7 Z"
+                  stroke="#0D40CC" stroke-width="2" fill="rgba(13,64,204,0.08)" stroke-linejoin="round"/>
+                <!-- Pantalla -->
+                <rect x="29" y="13" width="22" height="15" rx="3"
+                  stroke="#0D40CC" stroke-width="1.5" fill="rgba(13,64,204,0.13)"/>
+                <!-- LED pulsante -->
+                <circle cx="40" cy="20" r="3" fill="#0D40CC">
+                  <animate attributeName="opacity" values="1;0.25;1" dur="1.4s" repeatCount="indefinite"/>
                 </circle>
-                <circle cx="38" cy="68" r="1.5" fill="rgba(255,255,255,0.22)" opacity="0">
-                  <animate attributeName="cy" values="70;58" dur="2.0s" repeatCount="indefinite" begin="1.1s"/>
-                  <animate attributeName="opacity" values="0;0.45;0" keyTimes="0;0.1;1" dur="2.0s" repeatCount="indefinite" begin="1.1s"/>
-                </circle>
-                <circle cx="27" cy="65" r="1.8" fill="rgba(255,255,255,0.2)" opacity="0">
-                  <animate attributeName="cy" values="68;55" dur="1.5s" repeatCount="indefinite" begin="1.7s"/>
-                  <animate attributeName="opacity" values="0;0.4;0" keyTimes="0;0.1;1" dur="1.5s" repeatCount="indefinite" begin="1.7s"/>
-                </circle>
-
-              
-                <circle cx="28" cy="10" r="2.5" fill="#BAE01C" opacity="0">
-                  <animate attributeName="cy" values="10;-28" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-                  <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.1;1" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-                  <animate attributeName="r" values="2.5;5.5" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-                </circle>
-                <circle cx="24" cy="10" r="2" fill="#BAE01C" opacity="0">
-                  <animate attributeName="cy" values="10;-20" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
-                  <animate attributeName="cx" values="24;18" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
-                  <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.12;1" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
-                  <animate attributeName="r" values="2;4" dur="1.4s" repeatCount="indefinite" begin="0.65s"/>
-                </circle>
-                <circle cx="32" cy="10" r="1.6" fill="#BAE01C" opacity="0">
-                  <animate attributeName="cy" values="10;-22" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
-                  <animate attributeName="cx" values="32;38" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
-                  <animate attributeName="opacity" values="0;0.8;0" keyTimes="0;0.12;1" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
-                  <animate attributeName="r" values="1.6;3.5" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
-                </circle>
-                <circle cx="26" cy="10" r="1.2" fill="#BAE01C" opacity="0">
-                  <animate attributeName="cy" values="10;-14" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
-                  <animate attributeName="cx" values="26;22" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
-                  <animate attributeName="opacity" values="0;0.7;0" keyTimes="0;0.15;1" dur="1.1s" repeatCount="indefinite" begin="1.9s"/>
-                </circle>
+                <!-- Líneas de agarre -->
+                <line x1="29" y1="36" x2="51" y2="36" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+                <line x1="29" y1="42" x2="51" y2="42" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+                <line x1="29" y1="48" x2="51" y2="48" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+                <!-- Cabezal fijo -->
+                <rect x="20" y="53" width="40" height="7" rx="3"
+                  stroke="#0D40CC" stroke-width="2" fill="rgba(13,64,204,0.18)"/>
+                <!-- Dientes fijos (externos) — centrados en x=40, spacing 6px -->
+                <g stroke="#0D40CC" stroke-width="2" stroke-linecap="round" opacity="0.4">
+                  <line x1="22" y1="60" x2="22" y2="68"/>
+                  <line x1="28" y1="60" x2="28" y2="68"/>
+                  <line x1="34" y1="60" x2="34" y2="68"/>
+                  <line x1="40" y1="60" x2="40" y2="68"/>
+                  <line x1="46" y1="60" x2="46" y2="68"/>
+                  <line x1="52" y1="60" x2="52" y2="68"/>
+                  <line x1="58" y1="60" x2="58" y2="68"/>
+                </g>
+                <!-- Cuchilla interior animada — intercalada entre externos -->
+                <g stroke="#0D40CC" stroke-width="2.5" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="translate"
+                    values="0 0;3 0;0 0;-3 0;0 0"
+                    dur="0.13s" repeatCount="indefinite"/>
+                  <line x1="25" y1="60" x2="25" y2="72"/>
+                  <line x1="31" y1="60" x2="31" y2="72"/>
+                  <line x1="37" y1="60" x2="37" y2="72"/>
+                  <line x1="43" y1="60" x2="43" y2="72"/>
+                  <line x1="49" y1="60" x2="49" y2="72"/>
+                  <line x1="55" y1="60" x2="55" y2="72"/>
+                </g>
               </svg>
             </div>
 
-       
             <p class="splash__label">CARGANDO...</p>
 
           </div>
@@ -221,7 +196,7 @@ const schema = {
       <path
         id="clipper-border-path"
         fill="none"
-        stroke="#BAE01C"
+        stroke="#286BE0"
         stroke-width="2.5"
         stroke-linejoin="round"
         opacity="0"
@@ -341,8 +316,8 @@ const schema = {
     max-height: 62vh;
     object-fit: contain;
     filter:
-      drop-shadow(0 0 28px rgba(186,224,28, 0.35))
-      drop-shadow(0 0 72px rgba(186,224,28, 0.14));
+      drop-shadow(0 0 28px rgba(28, 61, 224, 0.35))
+      drop-shadow(0 0 72px rgba(28, 155, 224, 0.14));
     animation: logo-glow 3.5s ease-in-out 1.2s infinite alternate;
     will-change: filter;
   }
@@ -355,13 +330,13 @@ const schema = {
   @keyframes logo-glow {
     from {
       filter:
-        drop-shadow(0 0 28px rgba(186,224,28, 0.35))
-        drop-shadow(0 0 72px rgba(186,224,28, 0.14));
+        drop-shadow(0 0 28px rgba(28, 51, 224, 0.35))
+        drop-shadow(0 0 72px rgba(28, 152, 224, 0.14));
     }
     to {
       filter:
-        drop-shadow(0 0 38px rgba(186,224,28, 0.55))
-        drop-shadow(0 0 90px rgba(186,224,28, 0.25));
+        drop-shadow(0 0 38px rgba(28, 80, 224, 0.55))
+        drop-shadow(0 0 90px rgba(28, 198, 224, 0.25));
     }
   }
 
@@ -416,7 +391,7 @@ const schema = {
 
  
   #clipper-border-svg {
-    filter: drop-shadow(0 0 5px #BAE01C) drop-shadow(0 0 12px rgba(186,224,28,0.5));
+    filter: drop-shadow(0 0 5px #286BE0) drop-shadow(0 0 12px rgba(186,224,28,0.5));
     will-change: filter;
   }
 
