@@ -221,9 +221,7 @@ const schema = {
     inset: 0;
     z-index: 61;
     background: #0D0D0D;
-    will-change: clip-path;
-    contain: layout style;
-   
+    will-change: opacity;
   }
 
 
@@ -416,8 +414,6 @@ const schema = {
     document.body.style.overflow = 'hidden';
 
     const SPLASH_WAIT_MS = 2200;
-    const DURATION_MS    = 1300;
-    const MAX_SCALE      = 45;
 
     // Lazy load the heavy background without blocking the critical path
     const bgImg = document.querySelector<HTMLImageElement>('.splash__bg-img');
@@ -434,66 +430,15 @@ const schema = {
       }
     }
 
-    function cubicEaseIn(t: number): number {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function buildClipperPath(s: number, cx: number, cy: number): string {
-      const p = (px: number, py: number) =>
-        `${cx + s * (px - 28)},${cy + s * (py - 53)}`;
-      return [
-        `M ${p(12,4)} Q ${p(4,4)} ${p(4,12)}`,
-        `L ${p(4,80)} L ${p(2,80)} L ${p(2,92)}`,
-        `L ${p(6,92)} L ${p(6,102)} L ${p(11,102)} L ${p(11,92)}`,
-        `L ${p(12,92)} L ${p(12,102)} L ${p(17,102)} L ${p(17,92)}`,
-        `L ${p(18,92)} L ${p(18,102)} L ${p(23,102)} L ${p(23,92)}`,
-        `L ${p(24,92)} L ${p(24,102)} L ${p(29,102)} L ${p(29,92)}`,
-        `L ${p(30,92)} L ${p(30,102)} L ${p(35,102)} L ${p(35,92)}`,
-        `L ${p(36,92)} L ${p(36,102)} L ${p(41,102)} L ${p(41,92)}`,
-        `L ${p(42,92)} L ${p(42,102)} L ${p(47,102)} L ${p(47,92)}`,
-        `L ${p(54,92)} L ${p(54,80)} L ${p(52,80)} L ${p(52,12)}`,
-        `Q ${p(52,4)} ${p(44,4)} Z`,
-      ].join(' ');
-    }
-
     function startTransition(): void {
-      const bg = document.getElementById('transition-bg');
-      if (bg) bg.style.opacity = '1';
-
       const wrapper = document.getElementById('splash-wrapper');
-      if (wrapper) wrapper.style.clipPath = 'url(#splashClip)';
-
-      const clipPathEl = document.getElementById('splash-clip-path');
-      if (!clipPathEl) return;
-      const clipEl = clipPathEl as Element;
-
-      const W  = window.innerWidth;
-      const H  = window.innerHeight;
-      const cx = W / 2;
-      const cy = H / 2;
-      let startTime: number | null = null;
-
-      const borderPathEl = document.getElementById('clipper-border-path') as SVGPathElement | null;
-      if (borderPathEl) borderPathEl.setAttribute('opacity', '0.85');
-
-      function tick(now: number): void {
-        if (startTime === null) startTime = now;
-        const t = Math.min((now - startTime) / DURATION_MS, 1);
-        const s = cubicEaseIn(t) * MAX_SCALE;
-
-        const clipperPath = buildClipperPath(s, cx, cy);
-        clipEl.setAttribute('d', `M 0 0 H ${W} V ${H} H 0 Z ${clipperPath}`);
-        borderPathEl?.setAttribute('d', clipperPath);
-
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          sessionStorage.setItem('splashSeen', '1');
-          removeSplash();
-        }
-      }
-
-      requestAnimationFrame(tick);
+      if (!wrapper) { sessionStorage.setItem('splashSeen', '1'); removeSplash(); return; }
+      wrapper.style.transition = 'opacity 0.75s ease';
+      wrapper.style.opacity = '0';
+      wrapper.addEventListener('transitionend', () => {
+        sessionStorage.setItem('splashSeen', '1');
+        removeSplash();
+      }, { once: true });
     }
 
     // Wait for content to be ready (window.load), but enforce a min display
