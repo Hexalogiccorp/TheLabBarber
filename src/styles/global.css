@@ -24,8 +24,6 @@ section[id] {
   scroll-margin-top: 64px;
 }
 
-/* Disable the default cross-fade so View Transitions is just used
-   for its flash-prevention mechanism, not for any extra animation. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

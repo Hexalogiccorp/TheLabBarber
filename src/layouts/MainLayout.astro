@@ -134,24 +134,18 @@ const schema = {
           <div class="splash__loader">
             <div class="splash__icon">
               <svg class="tools-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <!-- Cuerpo de la máquina -->
                 <path d="M33 7 Q29 7 27 11 L23 52 Q23 55 26 55 L54 55 Q57 55 57 52 L53 11 Q51 7 47 7 Z"
                   stroke="#0D40CC" stroke-width="2" fill="rgba(13,64,204,0.08)" stroke-linejoin="round"/>
-                <!-- Pantalla -->
                 <rect x="29" y="13" width="22" height="15" rx="3"
                   stroke="#0D40CC" stroke-width="1.5" fill="rgba(13,64,204,0.13)"/>
-                <!-- LED pulsante -->
                 <circle cx="40" cy="20" r="3" fill="#0D40CC">
                   <animate attributeName="opacity" values="1;0.25;1" dur="1.4s" repeatCount="indefinite"/>
                 </circle>
-                <!-- Líneas de agarre -->
                 <line x1="29" y1="36" x2="51" y2="36" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
                 <line x1="29" y1="42" x2="51" y2="42" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
                 <line x1="29" y1="48" x2="51" y2="48" stroke="#0D40CC" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
-                <!-- Cabezal fijo -->
                 <rect x="20" y="53" width="40" height="7" rx="3"
                   stroke="#0D40CC" stroke-width="2" fill="rgba(13,64,204,0.18)"/>
-                <!-- Dientes fijos (externos) — centrados en x=40, spacing 6px -->
                 <g stroke="#0D40CC" stroke-width="2" stroke-linecap="round" opacity="0.4">
                   <line x1="22" y1="60" x2="22" y2="68"/>
                   <line x1="28" y1="60" x2="28" y2="68"/>
@@ -161,7 +155,6 @@ const schema = {
                   <line x1="52" y1="60" x2="52" y2="68"/>
                   <line x1="58" y1="60" x2="58" y2="68"/>
                 </g>
-                <!-- Cuchilla interior animada — intercalada entre externos -->
                 <g stroke="#0D40CC" stroke-width="2.5" stroke-linecap="round">
                   <animateTransform attributeName="transform" type="translate"
                     values="0 0;3 0;0 0;-3 0;0 0"
