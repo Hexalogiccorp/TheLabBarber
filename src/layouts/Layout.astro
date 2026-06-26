@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://thelabbarber506.com";
-const ogImage = `${siteUrl}/barber.webp`;
+const ogImage = `${siteUrl}/casadelcorte.png`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -26,8 +26,8 @@ const schema = {
   "image": ogImage,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "De Bar Martel 100 metros norte, local a mano derecha",
-    "addressLocality": "Siquirres",
+    "streetAddress": "Centro Comercial Los Maderos, diagonal al Pani, segunda planta., Guápiles, Costa Rica",
+    "addressLocality": "Guapiles",
     "addressRegion": "Limón",
     "addressCountry": "CR"
   },
@@ -60,8 +60,8 @@ const schema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/barber.webp" />
-		<link rel="icon" href="/barber.webp" />
+		<link rel="icon" type="image/svg+xml" href="/casadelcorte.png" />
+		<link rel="icon" href="/casadelcorte.png" />
 		<meta name="generator" content={Astro.generator} />
 
 		<link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
@@ -78,7 +78,7 @@ const schema = {
 		<meta property="og:url"         content={siteUrl} />
 		<meta property="og:image"       content={ogImage} />
 		<meta property="og:locale"      content="es_CR" />
-		<meta property="og:site_name"   content="The Lab Barber 506" />
+		<meta property="og:site_name"   content="La Casa Del Corte" />
 
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>

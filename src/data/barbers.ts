@@ -13,8 +13,8 @@ export interface Barber {
 export const barbers: Barber[] = [
   {
     slug: "osvaldo-ortiz",
-    firstName: "Osvaldo",
-    lastName: "Ortíz",
+    firstName: "Mario",
+    lastName: "Hernández",
     photo: "/barber1.webp",
     role: "Fundador & Barbero",
     experience: 4,
