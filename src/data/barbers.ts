@@ -7,6 +7,7 @@ export interface Barber {
   experience: number;
   whatsapp: string;
   calUrl?: string;
+  calEmail?: string;
 }
 
 export const barbers: Barber[] = [
@@ -14,27 +15,11 @@ export const barbers: Barber[] = [
     slug: "osvaldo-ortiz",
     firstName: "Osvaldo",
     lastName: "Ortíz",
-    photo: "/barber1.jpg",
+    photo: "/barber1.webp",
     role: "Fundador & Barbero",
     experience: 4,
     whatsapp: "https://wa.me/50600000000",
-  },
-  {
-    slug: "barbero-dos",
-    firstName: "Nombre",
-    lastName: "Apellido",
-    photo: "/barber1.jpg",
-    role: "Barbero",
-    experience: 2,
-    whatsapp: "https://wa.me/50600000000",
-  },
-  {
-    slug: "barbero-tres",
-    firstName: "Nombre",
-    lastName: "Apellido",
-    photo: "/barber1.jpg",
-    role: "Barbero",
-    experience: 3,
-    whatsapp: "https://wa.me/50600000000",
-  },
+    calUrl: "https://cal.com/diego-duarte-fernandez-mwqk4a/diego",
+    calEmail: "diegoduarte8343@gmail.com",
+  }
 ];

@@ -13,8 +13,8 @@ const {
   description = "Barbería profesional en Siquirres, Costa Rica. Cortes, barba y afeitado clásico por manos expertas. Reserva tu cita hoy mismo.",
 } = Astro.props;
 
-const siteUrl = "https://thelabbarber506.com"; // TODO: actualizar con la URL real
-const ogImage = `${siteUrl}/logoHero.webp`;
+const siteUrl = "https://thelabbarber506.com";
+const ogImage = `${siteUrl}/barber.webp`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -22,7 +22,7 @@ const schema = {
   "name": "The Lab Barber 506",
   "description": description,
   "url": siteUrl,
-  "telephone": "+506XXXXXXXX", // TODO: actualizar con el número real
+  "telephone": "+506XXXXXXXX",
   "image": ogImage,
   "address": {
     "@type": "PostalAddress",
@@ -60,8 +60,8 @@ const schema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logoHero.webp" />
-		<link rel="icon" href="/logoHero.webp" />
+		<link rel="icon" type="image/svg+xml" href="/barber.webp" />
+		<link rel="icon" href="/barber.webp" />
 		<meta name="generator" content={Astro.generator} />
 
 		<link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
