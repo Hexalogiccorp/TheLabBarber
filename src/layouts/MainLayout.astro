@@ -66,8 +66,7 @@ const schema = {
 
     <link rel="preload" href="/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
     <link rel="preload" href="/HeroBackground.webp" as="image" />
-    <link rel="preload" href="/barber-main.webp" as="image" />
-    <link rel="preload" href="/casadelcorte.png" as="image" />
+    <link rel="preload" href="/casadelcorte.png" as="image" fetchpriority="high" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -116,7 +115,7 @@ const schema = {
 
       
         <div class="splash__bg">
-          <img src="/barber-main.webp" alt="" class="splash__bg-img" />
+          <img data-src="/barber-main.webp" alt="" class="splash__bg-img" />
           <div class="splash__bg-overlay"></div>
         </div>
 
@@ -128,6 +127,7 @@ const schema = {
             <img
               src="/casadelcorte.png"
               alt="Barber Shop"
+              fetchpriority="high"
               class="splash__logo"
             />
           </div>
@@ -419,7 +419,24 @@ const schema = {
     const DURATION_MS    = 1300;
     const MAX_SCALE      = 45;
 
-    function cubicEaseIn(t: number): number { return t * t * t; }
+    // Lazy load the heavy background without blocking the critical path
+    const bgImg = document.querySelector<HTMLImageElement>('.splash__bg-img');
+    if (bgImg) {
+      const src = bgImg.getAttribute('data-src');
+      if (src) {
+        const img = new Image();
+        img.onload = () => {
+          bgImg.src = src;
+          bgImg.style.transition = 'opacity 0.6s ease';
+          bgImg.style.opacity = '1';
+        };
+        img.src = src;
+      }
+    }
+
+    function cubicEaseIn(t: number): number {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
 
     function buildClipperPath(s: number, cx: number, cy: number): string {
       const p = (px: number, py: number) =>
@@ -479,6 +496,28 @@ const schema = {
       requestAnimationFrame(tick);
     }
 
-    setTimeout(startTransition, SPLASH_WAIT_MS);
+    // Wait for content to be ready (window.load), but enforce a min display
+    // time so the brand is visible and a max cap so it never hangs forever.
+    const MIN_MS = SPLASH_WAIT_MS;
+    const MAX_MS = 4200;
+    const splashStart = Date.now();
+
+    function scheduleTransition(): void {
+      const elapsed = Date.now() - splashStart;
+      const remaining = Math.max(0, MIN_MS - elapsed);
+      setTimeout(startTransition, remaining);
+    }
+
+    const safetyCap = setTimeout(scheduleTransition, MAX_MS);
+
+    if (document.readyState === 'complete') {
+      clearTimeout(safetyCap);
+      scheduleTransition();
+    } else {
+      window.addEventListener('load', () => {
+        clearTimeout(safetyCap);
+        scheduleTransition();
+      }, { once: true });
+    }
   }
 </script>
