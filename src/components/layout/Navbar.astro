@@ -11,7 +11,7 @@ const navLinks = [
 
     <a href="#inicio" aria-label="The Lab Barber 506 — ir al inicio" class="shrink-0">
       <img
-        src="/letteringg.webp"
+        src="/casadelcorte.png"
         aria-hidden="true"
         class="h-6 w-auto sm:h-7 md:h-8 object-contain"
       />
@@ -37,19 +37,19 @@ const navLinks = [
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <span aria-hidden="true" class="menu-bar block w-6 h-0.5 bg-[#286BE0] transition-all duration-300 origin-center"></span>
-      <span aria-hidden="true" class="menu-bar block w-4 h-0.5 bg-[#286BE0] transition-all duration-300 ml-auto"></span>
-      <span aria-hidden="true" class="menu-bar block w-6 h-0.5 bg-[#286BE0] transition-all duration-300 origin-center"></span>
+      <span aria-hidden="true" class="menu-bar block w-6 h-0.5 bg-[#E59E48] transition-all duration-300 origin-center"></span>
+      <span aria-hidden="true" class="menu-bar block w-4 h-0.5 bg-[#E59E48] transition-all duration-300 ml-auto"></span>
+      <span aria-hidden="true" class="menu-bar block w-6 h-0.5 bg-[#E59E48] transition-all duration-300 origin-center"></span>
     </button>
   </nav>
 
-  <div id="mobile-menu" aria-hidden="true" class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out border-t border-[#213D94]/40 bg-[#141414]">
+  <div id="mobile-menu" aria-hidden="true" class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out border-t border-[#6B4415]/60 bg-[#141414]">
     <ul class="flex flex-col px-6 py-4 gap-4">
       {navLinks.map((link) => (
         <li>
           <a
             href={link.href}
-            class="mobile-nav-link relative block text-white text-sm font-medium tracking-wide uppercase py-2 pl-3 transition-colors duration-200 hover:text-[#286BE0]"
+            class="mobile-nav-link relative block text-white text-sm font-medium tracking-wide uppercase py-2 pl-3 transition-colors duration-200 hover:text-[#EBB470]"
           >
             {link.label}
           </a>
@@ -74,11 +74,11 @@ const navLinks = [
   }
   #main-nav.menu-open {
     background-color: #141414;
-    border-color: #213D94;
+    border-color: #6B4415;
   }
   #main-nav.navbar-solid {
     background-color: #141414;
-    border-color: #213D94;
+    border-color: #6B4415;
   }
 
   .nav-desktop-link {
@@ -92,13 +92,13 @@ const navLinks = [
     left: 0;
     width: 100%;
     height: 1.5px;
-    background: #286BE0;
+    background: #E59E48;
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .nav-desktop-link:hover {
-    color: #286BE0;
+    color: #EBB470;
   }
   .nav-desktop-link:hover::after {
     transform: scaleX(1);
@@ -112,11 +112,11 @@ const navLinks = [
     transform: translateY(-50%) scaleY(0);
     width: 2px;
     height: 60%;
-    background: #286BE0;
+    background: #E59E48;
     transition: transform 0.15s ease;
   }
   .mobile-nav-link.nav-pressed {
-    color: #286BE0;
+    color: #EBB470;
   }
   .mobile-nav-link.nav-pressed::before {
     transform: translateY(-50%) scaleY(1);
